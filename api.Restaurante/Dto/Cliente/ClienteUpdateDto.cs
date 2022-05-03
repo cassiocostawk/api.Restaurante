@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace api.Restaurante.Dto.Cliente
+namespace api.Restaurante.Dto
 {
     public class ClienteUpdateDto : IUpdateDto
     {

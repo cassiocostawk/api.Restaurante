@@ -1,4 +1,4 @@
-﻿using api.Restaurante.Dto.Cliente;
+﻿using api.Restaurante.Dto;
 using api.Restaurante.Model;
 using AutoMapper;
 using System;

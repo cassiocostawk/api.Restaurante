@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace api.Restaurante.Dto.Cliente
+namespace api.Restaurante.Dto
 {
     public class ClienteCreateDto : ICreateDto
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Restaurante.Dto
 {
-    interface ICreateDto
+    public interface ICreateDto
     {
     }
 }
