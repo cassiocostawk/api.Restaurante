@@ -28,7 +28,7 @@ namespace api.Restaurante
         {
             services.AddDbContext<AppDbContext>(options => options
                 .UseLazyLoadingProxies()
-                .UseSqlServer(Configuration.GetConnectionString("RestauranteConnection")));
+                .UseSqlServer(Configuration.GetConnectionString("ApiConnection")));
             services.AddScoped<ClienteService, ClienteService>();
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
