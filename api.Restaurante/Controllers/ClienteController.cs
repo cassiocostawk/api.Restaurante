@@ -42,7 +42,9 @@ namespace api.Restaurante.Controllers
         {
             var result = _service.Update(id, updateDto);
 
-            return result.IsSuccess ? Ok(result.Successes) : NotFound(result.Errors); 
+            if (!result.IsSuccess) return NotFound(result.Errors); 
+            
+            return Ok(result.Successes);
         }
 
         [HttpPost]
@@ -59,7 +61,9 @@ namespace api.Restaurante.Controllers
         {
             var result = _service.Delete(id);
 
-            return result.IsSuccess ? NoContent() : NotFound(result.Errors);
+            if (!result.IsSuccess) return NotFound(result.Errors);
+
+            return NoContent();
         }
     }
 }
