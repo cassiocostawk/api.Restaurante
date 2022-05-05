@@ -21,14 +21,14 @@ namespace api.Restaurante
         }
 
         public IConfiguration Configuration { get; }
-        private string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        private string connectionString;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options
                 .UseLazyLoadingProxies()
-                .UseSqlServer(Configuration.GetConnectionString("ApiConnection")));
+                .UseSqlServer(connectionString));
             services.AddScoped<ClienteService, ClienteService>();
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
@@ -42,7 +42,7 @@ namespace api.Restaurante
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                        policy.WithOrigins("http://localhost")
+                        policy
                         .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod();
@@ -58,7 +58,11 @@ namespace api.Restaurante
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api.Restaurante v1"));
+
+                connectionString = Configuration.GetConnectionString("LocalConnection");
             }
+            else connectionString = Environment.GetEnvironmentVariable("ConnectionString");
+
 
             app.UseHttpsRedirection();
 
