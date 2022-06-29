@@ -2,7 +2,6 @@
 using api.Restaurante.Dto;
 using AutoMapper;
 using FluentResults;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using api.Restaurante.Model;
@@ -31,12 +30,12 @@ namespace api.Restaurante.Services
             return Result.Ok();
         }
 
-        public IList<ClienteReadDto> GetAll()
+        public IEnumerable<ClienteReadDto> GetAll()
         {
-            IEnumerable<Cliente> cinemas = _context.Clientes.ToList();
-            if (cinemas == null) return null;
+            IEnumerable<Cliente> cliente = _context.Clientes;
+            if (cliente == null) return null;
 
-            return _mapper.Map<List<ClienteReadDto>>(cinemas);
+            return _mapper.Map<IEnumerable<ClienteReadDto>>(cliente);
         }
 
         public ClienteReadDto GetById(int id)

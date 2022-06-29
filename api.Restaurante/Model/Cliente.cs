@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace api.Restaurante.Model
 {
@@ -13,6 +12,12 @@ namespace api.Restaurante.Model
         public DateTime DataNascimento { get; set; }
         public bool Ativo { get; set; }
 
-        //public IList<ClienteContato> ClienteContatos { get; set; } = new List<ClienteContato>();
+        [JsonIgnore]
+        public virtual ICollection<ClienteContato> ClienteContatos { get; set; }
+
+        public Cliente()
+        {
+            ClienteContatos = new HashSet<ClienteContato>();
+        }
     }
 }

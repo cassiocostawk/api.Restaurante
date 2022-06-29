@@ -2,14 +2,12 @@ using api.Restaurante.Data;
 using api.Restaurante.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using AutoMapper;
 using System;
-using Microsoft.EntityFrameworkCore;
-using api.Restaurante.Profiles;
 
 namespace api.Restaurante
 {
@@ -30,6 +28,7 @@ namespace api.Restaurante
                 .UseLazyLoadingProxies()
                 .UseSqlServer(connectionString));
             services.AddScoped<ClienteService, ClienteService>();
+            services.AddScoped<ClienteContatoService, ClienteContatoService>();
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>

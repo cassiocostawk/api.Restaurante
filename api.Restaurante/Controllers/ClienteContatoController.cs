@@ -1,17 +1,17 @@
-﻿using api.Restaurante.Dto;
+﻿using api.Restaurante.Dto.ClienteContato;
 using api.Restaurante.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace api.Restaurante.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class ClienteContatoController : ControllerBase
     {
-        private readonly ClienteService _service;
+        private readonly ClienteContatoService _service;
 
-        public ClienteController(ClienteService service)
+        public ClienteContatoController(ClienteContatoService service)
         {
             _service = service;
         }
@@ -35,7 +35,7 @@ namespace api.Restaurante.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, ClienteUpdateDto updateDto)
+        public async Task<IActionResult> Update(int id, ClienteContatoUpdateDto updateDto)
         {
             var result = _service.Update(id, updateDto);
 
@@ -45,7 +45,7 @@ namespace api.Restaurante.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Insert(ClienteCreateDto createDto)
+        public async Task<IActionResult> Insert(ClienteContatoCreateDto createDto)
         {
             var readDto = _service.Insert(createDto);
             if (readDto == null) return BadRequest("Não foi possível inserir.");
